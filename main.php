@@ -1,15 +1,15 @@
 <?php
-require_once ('Heros.php');
+require_once('Characters.php');
 require_once ('Barbare.php');
-require_once ('Roublard.php');
+require_once('Rogue.php');
 
 
-$michou = new Roublard("Jean Michelz");
-$bernard = new Barbare("Bernard Michelz");
+$michou = new Rogue("Jean Michelz");
+//$bernard = new Barbare("Bernard Michelz");
 
 
 
 
-$bernard->infosBarbare();
+//$bernard->infosBarbare();
 
-$michou->infosRoublard();
+$michou->rogueInfo();

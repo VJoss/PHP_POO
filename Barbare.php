@@ -1,6 +1,6 @@
 <?php
-require_once ('Heros.php');
-class Barbare extends Heros
+require_once('Characters.php');
+class Barbare extends character
 {
         const rage = "Rage";
         private array $capacites = [];
@@ -11,23 +11,13 @@ class Barbare extends Heros
  */
 public function __construct(string $nomPersonnage)
 {
-    parent::__construct($nomPersonnage,0, 1, rand(5, 20), rand(5, 20), rand(5, 20), rand(5, 20), rand(5, 20), rand(5, 20),100);
+    parent::__construct($nomPersonnage);
 
     if ($this->getForce() < 5 || $this->getDexterite() < 5 || $this->getConstitution() < 5 || $this->getIntelligence() < 5|| $this->getSagesse() < 5 || $this->getCharisme() < 5) {
         throw new \InvalidArgumentException("Les valeurs caractéristiques ne respectent pas les valeurs minimales requises pour cette classe.");
     }
     $this->assignCapacites();
 }
-
-    protected function generateRandomStats(): void
-    {
-        $this->setForce(rand(5, 20)); // Statistique spécifique au Barbare
-        $this->setDexterite(rand(5, 20)); // Statistique spécifique au Barbare
-        $this->setConstitution(rand(5, 20)); // Statistique spécifique au Barbare
-        $this->setIntelligence(rand(5, 20)); // Statistique spécifique au Barbare
-        $this->setSagesse(rand(5, 20)); // Statistique spécifique au Barbare
-        $this->setCharisme(rand(5, 20)); // Statistique spécifique au Barbare
-    }
 
     private function assignCapacites(): void
     {
@@ -159,9 +149,9 @@ public function __construct(string $nomPersonnage)
 
     public function infosBarbare(): void
     {
-        parent::caracteristiques();
-        echo "Ressources: " . self::rage . "\n"
-            . "Capacités: " . implode(",", $this->getCapacites()) . "\n"
-            . "Armes: " . self::typeArmes . "\n";
+        parent::GetAllCaracteristiques();
+        print "Ressources: " . self::rage . "<br>"
+            . "Capacités: " . implode(",", $this->getCapacites()) . "<br>"
+            . "Armes: " . self::typeArmes . "<br>";
     }
 }
