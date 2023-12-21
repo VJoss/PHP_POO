@@ -1,5 +1,6 @@
 <?php
 require_once('Characters.php');
+require_once 'constants.php';
 
 class Rogue extends character
 {
@@ -75,90 +76,17 @@ class Rogue extends character
     private function assignAbilities(): void
     {
         $level = $this->getLevel();
-        $this->abilities = [];
-        $this->stealth = 3;
-        $this->abilities[] = "Expertise, Attaque sournoise, Jargon des voleurs";
+        $this->abilities = ["Expertise", "Attaque sournoise", "Jargon des voleurs"];
 
-        for ($i = 2; $i <= $level; $i++) {
-            switch ($i) {
+        $abilityList = require 'constants.php';
 
-                case 2:
-                    $this->abilities[] = "Ruse";
-                    break;
-
-                case 3:
-                    $this->abilities[] = "Amélioration de caractéristiques";
-                    break;
-
-                case 4:
-                    $this->abilities[] = "Esquive instinctive";
-                    break;
-
-                case 5:
-                    $this->abilities[] = "Uncanny Dodge";
-                    break;
-
-                case 6:
-                    $this->abilities[] = "Expertise (Improved)";
-                    break;
-
-                case 7:
-                    $this->abilities[] = "Evasion";
-                    break;
-
-                case 8:
-                    $this->abilities[] = "Slippery Mind";
-                    break;
-
-                case 9:
-                    $this->abilities[] = "Rogue Archetype Feature";
-                    break;
-
-                case 10:
-                    $this->abilities[] = "Blindsense";
-                    break;
-
-                case 11:
-                    $this->abilities[] = "Reliable Talent";
-                    break;
-
-                case 12:
-                    $this->abilities[] = "Evasion (Improved)";
-                    break;
-
-                case 13:
-                    $this->abilities[] = "Steady Aim";
-                    break;
-
-                case 14:
-                    $this->abilities[] = "Blindsight";
-                    break;
-
-                case 15:
-                    $this->abilities[] = "Slippery Mind (Improved)";
-                    break;
-
-                case 16:
-                    $this->abilities[] = "Elusive";
-                    break;
-
-                case 17:
-                    $this->abilities[] = "Rogue Archetype Feature (Improved)";
-                    break;
-
-                case 18:
-                    $this->abilities[] = "Elusive (Improved)";
-                    break;
-
-                case 19:
-                    $this->abilities[] = "Stroke of Luck";
-                    break;
-
-                case 20:
-                    $this->abilities[] = "Cunning Action (Improved)";
-                    break;
+            for ($i = 2; $i <= $level; $i++) {
+                if (isset($abilityList['abilitiesRogue'][$i])) {
+                    $this->abilities[] = $abilityList['abilitiesRogue'][$i];
+                }
             }
-        }
+
+
         $this->stealth += $level;
     }
 
@@ -175,11 +103,11 @@ class Rogue extends character
     public function rogueInfo(): void
     {
         parent::getAllCharacteristics();
-        print "Resources: " . self::resources . "<br>"
-            . "Abilities: " . implode(",", $this->getAbilities()) . "<br>"
-            . "Tools: " . self::tools . "<br>"
-            . "Weapon Type: " . self::weaponType . "<br>"
-            . "Stealth Points: " . $this->stealth . "<br>";
+        print "Resources: " . self::resources . "\n"
+            . "Abilities: " . implode(",", $this->getAbilities()) . "\n"
+            . "Tools: " . self::tools . "\n"
+            . "Weapon Type: " . self::weaponType . "\n"
+            . "Stealth Points: " . $this->stealth . "\n";
     }
 
 }

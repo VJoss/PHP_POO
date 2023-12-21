@@ -55,15 +55,12 @@ abstract class character
 
     public function checkLevelUp(): void
     {
-        $experienceThresholds = [
-            100, 200, 300, 400, 500, 600, 700, 800, 900, 1000,
-            1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900
-        ];
+        $experienceThresholds = require 'constants.php';
 
         $currentLevel = $this->getLevel();
         // Vérifiez si l'expérience atteint ou dépasse le seuil pour le prochain niveau.
-        if ($currentLevel < count($experienceThresholds) &&
-            $this->experience >= $experienceThresholds[$currentLevel - 1])
+        if (isset($experienceThresholds['experienceThresholds'][$currentLevel]) &&
+            $this->experience >= $experienceThresholds['experienceThresholds'][$currentLevel])
         {
             // Augmentez le niveau et réinitialisez l'expérience
             $this->setLevel($currentLevel + 1);
@@ -164,16 +161,16 @@ abstract class character
 
     public function getAllCharacteristics(): void
     {
-        print "Character Name: " . $this->characterName . "<br>"
-            . "Level: " . $this->level . "<br>"
-            . "Experience: " . $this->experience . "<br>"
-            . "Strength: " . $this->strength . "<br>"
-            . "Dexterity: " . $this->dexterity . "<br>"
-            . "Constitution: " . $this->constitution . "<br>"
-            . "Intelligence: " . $this->intelligence . "<br>"
-            . "Wisdom: " . $this->wisdom . "<br>"
-            . "Charisma: " . $this->charisma . "<br>"
-            . "Hit Points: " . $this->hitPoints . "<br>";
+        print "Character Name: " . $this->characterName . "\n"
+            . "Level: " . $this->level . "\n"
+            . "Experience: " . $this->experience . "\n"
+            . "Strength: " . $this->strength . "\n"
+            . "Dexterity: " . $this->dexterity . "\n"
+            . "Constitution: " . $this->constitution . "\n"
+            . "Intelligence: " . $this->intelligence . "\n"
+            . "Wisdom: " . $this->wisdom . "\n"
+            . "Charisma: " . $this->charisma . "\n"
+            . "Hit Points: " . $this->hitPoints . "\n";
     }
 
 }
